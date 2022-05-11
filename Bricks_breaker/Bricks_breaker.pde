@@ -10,23 +10,37 @@ final int game = 3;
 final int gameover = 4;
 final int options = 5;
 boolean win = false;
+int powerup;
+int ability;
+int pspeed = 5;
+boolean lava = false;
 
 float vx = 2;
 float vy = 2;
 
 boolean left, right;
+double d2;
+double d;
 
 int[] x;
 int[] y;
 boolean[] alive;
+int [] counter1;
+int [] counter2;
+int [] counter3;
 int brickd;
-int n;
+int n, n2;
 int tempx, tempy;
+int score;
+int live = 5;
 
-color dirt = #9b7653;
-color grass = #7CFC00;
-color ice = #e5e5e0;
-color cyan = #00FFFF;
+color red = #FF0000;
+color yellow = #FFFF00;
+color green = #09B20A;
+
+color clr;
+
+PImage lava2;
 
 //int c = random(2)
 //if (c==1){mycolor = dirt} else { mycolor = grass}
@@ -44,25 +58,31 @@ color cyan = #00FFFF;
 void setup() {
   size(1200, 800);
   mode = game;
+  
+  lava2 = loadImage("lava.jpg");
 
 
-  brickd = 60;
-  n = 39;
+  brickd = 30;
+  n =171;
+  n2 = n/3;
   x = new int[n];
   y = new int[n];
-  tempx = 70;
-  tempy = 70;
+  counter1 = new int[n];
+  counter2 = new int[n];
+  counter3 = new int[n];
+  tempx = 60;
+  tempy = 50;
   alive = new boolean[n];
   
   int i = 0;
   while ( i < n) {
     x[i] = tempx;
     y[i] = tempy;
-    tempx += 90;
+    tempx += 60;
     alive[i] = true;
-    if ( tempx > width - 30) {
-      tempy += 80;
-      tempx = 70;
+    if ( tempx > width - 20) {
+      tempy += 40;
+      tempx = 60;
     }
     i += 1;
   }

@@ -6,11 +6,11 @@ double distance(int x1, int y1, float x2, float y2 ) {
   return d;
 }
 
-double distance2( int x3, int y3, float x4, float y4) {
+//double distance2( int x3, int y3, float x4, float y4) {
 
-  float a2 = x3 - x4;
-  float b2 = y3 - y4;
+//  float a2 = x3 - x4;
+//  float b2 = y3 - y4;
 
-  double d2 = sqrt(a2*a2 + b2*b2) ;
-  return d2;
-}
+//  double d2 = sqrt(a2*a2 + b2*b2) ;
+//  return d2;
+//}
