@@ -1,33 +1,38 @@
 int pxpos = 600;
 int pypos = 810;
 int bxpos = 500;
-int bypos = 650;
+int bypos = 600;
 int pwxpos = 600;
 int pwypos = 600;
 int hit1 = 0;
 boolean go = false;
+boolean start = false;
 
 void game() {
-
-  //if ( live < 1) {
-  //  mode = gameover;
-  //  win = false;
-  //}
-
+  timer += 1;
+  if ( timer > 200) {
+    if ( live < 1) {
+      mode = gameover;
+      win = false;
+    }
+    bxpos += vx;
+    bypos += vy;
+  }
   if ( score > 170) {
     mode = gameover;
     win = true;
   }
   background(0);
   frameRate(200);
-
+  
 
   ellipseMode(CENTER);
   ellipse( pxpos, pypos, 150, 150);
   ellipse( bxpos, bypos, 20, 20);
 
-  bxpos += vx;
-  bypos += vy;
+  if ( ai == true) {
+    pxpos = bxpos;
+  }
 
 
   if ( powerup == 1) {
@@ -54,11 +59,10 @@ void game() {
     score += 3;
     ability =0;
   }
-    println("two  " +d2);    
 
-  //if ( ability == 2 || ability == 17 || ability == 14 || ability == 13 || ability == 20) {
-  //  live += 1;
-  //}
+  if ( ability == 2 || ability == 17 || ability == 14 || ability == 13 || ability == 20) {
+    live += 1;
+  }
 
   //if ( ability == 4) {
   //  imageMode(CORNER);
@@ -70,10 +74,10 @@ void game() {
   //  score += 1;
   //}
 
-  //if ( ability == 19) {
-  //  pspeed = 8;
-  //}
-  
+  if ( ability == 19) {
+    pspeed = 8;
+  }
+
   //if (lava == true) {
   //  if ( bypos > 735) {
   //    mode = gameover;
@@ -89,13 +93,13 @@ void game() {
   text("lives " + live, pxpos, 650);
 
 
-  d = distance(bxpos, bypos, pxpos, pypos);
+  d = dist(bxpos, bypos, pxpos, pypos);
   d2 = distance(pxpos, pypos, pwxpos, pwypos);
-  println("one  " +d2);
+  
 
   if (d < 85) {
-    vx = (bxpos - pxpos)/30;
-    vy = (bypos - pypos)/30;
+    vx = (bxpos - pxpos)/10.0;
+    vy = (bypos - pypos)/10.0;
   }
 
   if ( right == true) {
@@ -171,7 +175,7 @@ void game() {
         if ( i/n2 == 1) {
           counter2[i]++;
         }
-        if ( i/n2 == 0 && counter3[i] == 1) {
+        if ( i/n2 == 0) {
           alive[i] = false;
           score += 1;
         }

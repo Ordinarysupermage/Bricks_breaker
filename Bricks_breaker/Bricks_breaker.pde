@@ -3,12 +3,16 @@
 //2-3
 
 
+PImage[] gif;
+int numberofframes;
+int timer;
 int mode;
 final int intro = 1;
 final int menu = 2;
 final int game = 3;
 final int gameover = 4;
 final int options = 5;
+final int pause = 6;
 boolean win = false;
 int powerup;
 int ability;
@@ -57,11 +61,21 @@ PImage lava2;
 // }
 void setup() {
   size(1200, 800);
-  mode = game;
+  mode = intro;
   
   lava2 = loadImage("lava.jpg");
 
-
+  
+  numberofframes = 34;
+  gif = new PImage[numberofframes];
+  
+  int r = 0;
+  while ( r < numberofframes ) {
+    gif[r] = loadImage("frame_" +r+"_delay-0.06s.gif");
+    r++;
+  }
+    
+  
   brickd = 30;
   n =171;
   n2 = n/3;
@@ -107,5 +121,7 @@ void draw() {
     gameover();
   } else if (mode == options) {
     options();
+  } else if (mode == pause) {
+    pause();
   }
 }
